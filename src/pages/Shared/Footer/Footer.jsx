@@ -25,12 +25,13 @@ const Footer = () => {
                 <li>Coverage</li>
             </ul>
         </div>
+        {/* Social media links */}
          <div className="border-b-3 border-dotted border-white w-[300px]"></div>
         <div className="grid grid-flow-col gap-4 text-4xl">
-         <FaLinkedin />
-         <FaFacebook />
-         <FaSquareGithub />
-         <FaYoutube />
+         <a href="https://www.linkedin.com/in/mokarama-mim"><FaLinkedin /></a> 
+        <a href="https://www.facebook.com/mokarama.akter.shanta"> <FaFacebook /></a> 
+         <a href="https://github.com/Mokarama"><FaSquareGithub /></a>
+         <a href="https://www.youtube.com/"><FaYoutube /></a>
         </div>
       </div>
     </footer>
