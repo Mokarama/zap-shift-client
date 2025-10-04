@@ -8,8 +8,7 @@ const RootLayout = () => {
         <div className='bg-[#f6f3f3] h-screen'>
             <Navbar></Navbar>
             <Outlet></Outlet>
-            <Footer></Footer>
-            
+            <Footer></Footer> 
         </div>
     );
 };
