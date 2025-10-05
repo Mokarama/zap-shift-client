@@ -13,12 +13,12 @@ const  Works =()=> {
       desc: "From personal packages to business shipments — we deliver on time, every time."
     },
     {
-      icon: <FaTruckPickup size={40} className="text-gray-600 hover:text-blue-500" />,
+      icon: <FaTruckPickup size={50} className="text-gray-600 hover:text-blue-500" />,
       title: "Delivery Hub",
       desc: "From personal packages to business shipments — we deliver on time, every time."
     },
     {
-      icon: <FaTruckPickup size={40} className="text-gray-600 hover:text-blue-500" />,
+      icon: <FaTruckPickup size={50} className="text-gray-600 hover:text-blue-500" />,
       title: "Booking SME & Corporate",
       desc: "From personal packages to business shipments — we deliver on time, every time."
     },
