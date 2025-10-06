@@ -7,8 +7,7 @@ const Navbar = () => {
            
            <li className='text-lg'><Link to='/'>Home</Link></li>
            <li className='text-lg'><Link to='/coverage'>Coverage</Link></li>
-           <li className='text-lg'><Link to='/aboutUs'>About Us</Link></li>
-         
+           <li className='text-lg'><Link to='/aboutUs'>About Us</Link></li>     
     </>
   return (
     <div className="navbar mb-5 py-8 bg-amber-50 shadow-sm px-10">

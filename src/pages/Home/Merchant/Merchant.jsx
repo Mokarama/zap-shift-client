@@ -1,14 +1,15 @@
 
-import img from '../../../assets/banner/location-merchant.png'
-
+import img1 from '../../../assets/banner/location-merchant.png'
+// import img2 from '../../../assets/banner/be-a-merchant-bg.png'
 const Merchant = () => {
   return (
     <>
-      <div className="hero bg-[#05515a] py-8 my-3 rounded-3xl">
+      <div className="hero bg-[url(assets/banner/be-a-merchant-bg.png)]  bg-[#05515a] py-8 my-3 rounded-3xl">
+      
         <div className="hero-content flex-col lg:flex-row-reverse  px-20">
           <img
-            src={img}
-            className="max-w-sm rounded-lg shadow-2xl "
+            src={img1}
+            className="max-w-sm rounded-lg "
           />
           <div>
             <h1 className="text-5xl font-bold ">Merchant and Customer Satisfaction is Our First Priority</h1>
