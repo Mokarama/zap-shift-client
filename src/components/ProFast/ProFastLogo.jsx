@@ -1,11 +1,14 @@
+import { Link } from 'react-router';
 import logo from '/src/assets/logo.png'
 
 const ProFastLogo = () => {
     return (
-        <div>
-           <img src={logo} alt="" /> 
-           <h2>ProFast</h2>
+       <Link to="/">
+            <div className='flex items-end'>
+           <img className='mb-2' src={logo} alt="" /> 
+           <p>ProFast</p>
         </div>
+       </Link>
     );
 };
 
