@@ -6,9 +6,10 @@ const Navbar = () => {
     const nevItems =<>
            
            <li className='text-lg'><Link to='/'>Home</Link></li>
+           <li className='text-lg'><Link to='/sendParcel'>Send a Parcel</Link></li>
            <li className='text-lg'><Link to='/coverage'>Coverage</Link></li>
            <li className='text-lg'><Link to='/aboutUs'>About Us</Link></li>     
-    </>
+  </>
   return (
     <div className="navbar mb-5 py-8 bg-amber-50 shadow-sm px-10">
       <div className="navbar-start">
@@ -49,7 +50,7 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <a className="btn mr-2">Sign In</a>
-        <a className="btn bg-[#CAEB66]">Be a rider</a>
+        <Link to='/login' className="btn bg-[#CAEB66]">LogIn</Link>
        <p className='ml-3 text-4xl'><BsArrowUpRightCircleFill/></p>
       </div>
     </div>
