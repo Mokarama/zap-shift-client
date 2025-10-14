@@ -1,13 +1,22 @@
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import logoImg from '../../../assets/logo.png'
 import { BsArrowUpRightCircleFill } from 'react-icons/bs';
+import useAuth from '../../../hooks/useAuth';
 
 const Navbar = () => {
+  const {user}=useAuth();
     const nevItems =<>
            
            <li className='text-lg'><Link to='/'>Home</Link></li>
            <li className='text-lg'><Link to='/sendParcel'>Send a Parcel</Link></li>
            <li className='text-lg'><Link to='/coverage'>Coverage</Link></li>
+
+          {
+            user && <>
+              <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+            </>
+          }
+
            <li className='text-lg'><Link to='/aboutUs'>About Us</Link></li>     
   </>
   return (
