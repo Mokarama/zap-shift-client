@@ -6,7 +6,7 @@ const ProFastLogo = () => {
        <Link to="/">
             <div className='flex items-end'>
            <img className='mb-2' src={logo} alt="" /> 
-           <p>ProFast</p>
+           <p className='text-3xl font-bold'>ProFast</p>
         </div>
        </Link>
     );

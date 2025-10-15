@@ -1,9 +1,10 @@
-import { Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
+import ProFastLogo from "../components/ProFast/ProFastLogo";
 
 const DashboardLayout = () => {
   return (
     <>
-      <div className="drawer lg:drawer-open">
+      <div className=" drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
           {/* Navbar */}
@@ -39,17 +40,18 @@ const DashboardLayout = () => {
         </div>
         <div className="drawer-side">
           <label
-            htmlFor="my-drawer-3"
+            htmlFor="my-drawer-2"
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
           <ul className="menu bg-base-200 min-h-full w-80 p-4">
+            <ProFastLogo></ProFastLogo>
             {/* Sidebar content here */}
             <li>
-              <a>Sidebar Item 1</a>
+              <a>Home</a>
             </li>
             <li>
-              <a>Sidebar Item 2</a>
+              <NavLink to="/dashboard/myParcels">My Parcels</NavLink>
             </li>
           </ul>
         </div>
