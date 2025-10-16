@@ -1,42 +1,90 @@
 import { useForm } from "react-hook-form";
-
-
+import ProFastLogo from "../../../components/ProFast/ProFastLogo";
+import { useLocation, useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const LogIn = () => {
- const{register, handleSubmit, formState: {errors}}=useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { signIn } = useAuth()
+  const location = useLocation();
+  const navigate = useNavigate();
 
- const onSubmit=data=>{
-  console.log(data);
- 
- }
-    return (
-   <>
-    <form onSubmit={handleSubmit(onSubmit)}  className="card bg-base-100 w-full border-2 shadow-2xl">
-      <div className="card-body ">
-        <fieldset className="fieldset">
+  // যদি Login করার আগে user অন্য page এ ছিল
+  const from = location.state?.from?.pathname || "/";
 
-            {/* //email */}
-          <label className="label">Email</label>
-          <input type="email" className="input"  {...register("email")}   placeholder="Email" />
+  const onSubmit = async (data) => {
+    try {
+      await signIn(data.email, data.password);
+      Swal.fire({
+        icon: "success",
+        title: "Logged In",
+        text: "You have successfully logged in!",
+        confirmButtonColor: "#16a34a",
+      });
 
-          {/* //password */}
-          <label className="label">Password</label>
-          <input type="password" className="input" {...register("password",
-            {required:true, minLength:6}
-            )} placeholder="Password" />
-         {
-          errors.password?.type==='required' && <p className="text-red-600">Password is required</p>
-         }
-        {
-          errors.password?.type==='minLength' && <p className="text-red-600">Password must be 6 characters or longer</p>
-        }
+      // Login successful → previous page এ redirect
+      navigate(from, { replace: true });
+    } catch (error) {
+      console.error("Login error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Login Failed",
+        text: error.message,
+        confirmButtonColor: "#ef4444",
+      });
+    }
+  };
 
-          <button className="btn btn-neutral mt-4">Login</button>
-        </fieldset>
+  return (
+    <>
+      <div className="max-w-md mx-auto mt-10">
+        <ProFastLogo />
+
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="card bg-base-100 w-full border-2 shadow-2xl mt-5"
+        >
+          <div className="card-body">
+            <fieldset className="fieldset space-y-4">
+              {/* Email */}
+              <label className="label">Email</label>
+              <input
+                type="email"
+                className="input input-bordered w-full"
+                {...register("email", { required: true })}
+                placeholder="Email"
+              />
+              {errors.email?.type === "required" && (
+                <p className="text-red-600">Email is required</p>
+              )}
+
+              {/* Password */}
+              <label className="label">Password</label>
+              <input
+                type="password"
+                className="input input-bordered w-full"
+                {...register("password", { required: true, minLength: 6 })}
+                placeholder="Password"
+              />
+              {errors.password?.type === "required" && (
+                <p className="text-red-600">Password is required</p>
+              )}
+              {errors.password?.type === "minLength" && (
+                <p className="text-red-600">
+                  Password must be 6 characters or longer
+                </p>
+              )}
+
+              <button type="submit" className="btn btn-neutral w-full mt-4">
+                Login
+              </button>
+            </fieldset>
+          </div>
+        </form>
       </div>
-    </form>  
-        </>
-    );
+    </>
+  );
 };
 
 export default LogIn;

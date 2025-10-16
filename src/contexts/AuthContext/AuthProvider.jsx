@@ -5,7 +5,7 @@ import { auth } from "../../firebase/firebase.init";
 
 const AuthProvider = ({children}) => {
 const [user, setUser]=useState(null);
-const [loading, setLoading]=useState(false);
+const [loading, setLoading]=useState(true);
 
 
     //create user
@@ -23,7 +23,7 @@ const [loading, setLoading]=useState(false);
   //log out
   const logOut=()=>{
     setLoading(true);
-    return signOut(auth);
+    return signOut(auth).finally(() => setLoading(false));;
   }
 
   useEffect(()=>{
@@ -42,7 +42,7 @@ const [loading, setLoading]=useState(false);
         loading,
         createUser,
         signIn,
-        logOut
+        logOut,
     }
     
     return (
