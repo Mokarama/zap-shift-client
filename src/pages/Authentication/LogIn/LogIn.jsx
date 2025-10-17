@@ -86,8 +86,9 @@ const LogIn = () => {
             </button>
           </fieldset>
         </div>
+         <SocialLogin></SocialLogin>
       </form>
-      <SocialLogin></SocialLogin>
+     
     </div>
   );
 };

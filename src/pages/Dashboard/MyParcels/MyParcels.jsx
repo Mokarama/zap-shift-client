@@ -2,10 +2,12 @@ import Swal from "sweetalert2";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import useAuth from "../../../hooks/useAuth";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useNavigate } from "react-router";
 
 const MyParcels = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  const navigate =useNavigate();
   const queryClient = useQueryClient(); // To refetch parcels after deletion
 
   const { data: parcels = [], isLoading, isError } = useQuery({
@@ -22,7 +24,12 @@ const MyParcels = () => {
   if (isError) return <div>Failed to load parcels.</div>;
 
   const handleView = (id) => console.log("View details for:", id);
-  const handlePay = (id) => console.log("Pay for parcel:", id);
+
+
+  const handlePay = (id) => {
+    console.log("Pay for parcel:", id);
+    navigate(`/dashboard/payment/${id}`)
+  };
 
   const handleDelete = async (id) => {
     const result = await Swal.fire({
@@ -58,7 +65,7 @@ const MyParcels = () => {
   };
 
   return (
-    <div className="p-4">
+    <div className="p-4 ">
       <h2 className="text-2xl font-bold mb-4">My Parcels</h2>
 
       <div className="overflow-x-auto">

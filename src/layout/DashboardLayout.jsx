@@ -6,7 +6,7 @@ const DashboardLayout = () => {
     <>
       <div className=" drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content flex flex-col items-center mt-10">
           {/* Navbar */}
           <div className="navbar bg-base-300 w-full lg:hidden">
             <div className="flex-none">
@@ -30,11 +30,11 @@ const DashboardLayout = () => {
                 </svg>
               </label>
             </div>
-            <div className="mx-2 flex-1 px-2 lg:hodden">Dashboard</div>
+            <div className="mx-2 flex-1 px-2 lg:hidden">Dashboard</div>
             
           </div>
           {/* Page content here */}
-          <div>
+          <div className="w-full mt-3 lg:mt-0">
             <Outlet></Outlet>
           </div>
         </div>
