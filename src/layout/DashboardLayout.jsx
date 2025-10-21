@@ -1,5 +1,14 @@
 import { NavLink, Outlet } from "react-router";
 import ProFastLogo from "../components/ProFast/ProFastLogo";
+import {
+  Home,
+  Package,
+  CreditCard,
+  Search,
+  User,
+} from "lucide-react";
+
+
 
 const DashboardLayout = () => {
   return (
@@ -47,12 +56,55 @@ const DashboardLayout = () => {
           <ul className="menu bg-base-200 min-h-full w-80 p-4">
             <ProFastLogo></ProFastLogo>
             {/* Sidebar content here */}
-            <li>
-              <a>Home</a>
-            </li>
-            <li>
-              <NavLink to="/dashboard/myParcels">My Parcels</NavLink>
-            </li>
+             <li>
+        <NavLink
+          to="/dashboard"
+          className="flex items-center gap-2 p-2 hover:text-blue-600"
+        >
+          <Home className="w-5 h-5" />
+          <span>Home</span>
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/dashboard/myParcels"
+          className="flex items-center gap-2 p-2 hover:text-blue-600"
+        >
+          <Package className="w-5 h-5" />
+          <span>My Parcels</span>
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/dashboard/paymentHistory"
+          className="flex items-center gap-2 p-2 hover:text-blue-600"
+        >
+          <CreditCard className="w-5 h-5" />
+          <span>Payment History</span>
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/dashboard/track"
+          className="flex items-center gap-2 p-2 hover:text-blue-600"
+        >
+          <Search className="w-5 h-5" />
+          <span>Track a Package</span>
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          to="/dashboard/profile"
+          className="flex items-center gap-2 p-2 hover:text-blue-600"
+        >
+          <User className="w-5 h-5" />
+          <span>Update Profile</span>
+        </NavLink>
+      </li>
           </ul>
         </div>
       </div>
