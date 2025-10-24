@@ -1,5 +1,8 @@
+
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
+import axios from "axios";
+import { useState } from "react";
 
 const Register = () => {
   const {
@@ -7,26 +10,65 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { createUser } = useAuth();
+  const { createUser,updateUserProfile } = useAuth();
+
+  //profile picture
+  const [profilePic, setProfilePic]=useState('')
+
   const onSubmit = (data) => {
     console.log(data);
     // console.log(createUser);
     createUser(data.email, data.password)
       .then((result) => {
         console.log(result.user);
+
+      //update userinfo in the database
+
+      //update user profile in firebase
+      const userProfile ={
+        displayName: data.name,
+         photoURL:profilePic,
+      }
+      updateUserProfile(userProfile)
+      .then(()=>{
+        console.log('profile name pic updated')
+      })
+      .catch(error =>{
+        console.log(error)
+      })
+     
+
+
       })
       .catch((error) => {
         console.log(error.message);
       });
   };
 
-   const handleImageUpload =(e)=>{
+   const handleImageUpload =async(e)=>{
       const image =e.target.files[0];
       console.log(image);
+      if(!image){
+        console.log("No image selected");
+        return;
+      }
+      console.log("Selected image :" , image);
+      //form data create
      const formData=new FormData();
      formData.append('image',image);
 
+   const imageUploadUrl =`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`;
+  //  console.log(import.meta.env.VITE_image_upload_key,'image paisi');
+ 
 
+   try{
+      const res =await axios.post(imageUploadUrl, formData);
+      // console.log(res.data.data.url,'paisi ');
+      setProfilePic(res.data.data.url);
+   }
+   catch(error){
+        console.log(error)
+   }
    }
   return (
     <>
@@ -34,6 +76,7 @@ const Register = () => {
         <div className="card-body">
           <h2>Create an Account !</h2>
           <fieldset className="fieldset">
+
             {/* Name filed */}
             <label className="label">Name</label>
             <input
@@ -47,19 +90,21 @@ const Register = () => {
 
             {errors.name?.type === "required" && <p>name is required</p>}
 
-             {/* Profile  filed */}
-            <label className="label">Name</label>
-            <input
+               {/* Profile  filed */}
+            <label className="label">Upload your image</label>
+            <input 
               type="file"
-               onChange={handleImageUpload}
+              
               {...register("file", {
                 required: true,
-              })}
+                onChange:handleImageUpload
+            })}
               className="input w-full"
               placeholder="Your Profile Picture"
             />
 
-            {errors.name?.type === "required" && <p>name is required</p>}
+            {errors.file?.type === "required" && <p>Image file is required</p>}
+
 
             {/* Email filed */}
             <label className="label">Email</label>
