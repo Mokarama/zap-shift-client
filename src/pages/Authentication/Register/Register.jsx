@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router";
+
 
 const Register = () => {
   const {
@@ -134,6 +136,10 @@ const Register = () => {
               </p>
             )}
             <button className="btn btn-neutral mt-4">Register</button>
+           <p className="mt-3 font-bold">
+           Already registered? <Link to="/login"  className="font-bold text-xl border-b-2 pb-1">Login</Link>
+         </p>
+
           </fieldset>
         </div>
       </form>

@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import ProFastLogo from "../../../components/ProFast/ProFastLogo";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import Swal from "sweetalert2";
 import SocialLogin from "../SocialLogin/SocialLogin";
@@ -87,6 +87,9 @@ const LogIn = () => {
           </fieldset>
         </div>
          <SocialLogin></SocialLogin>
+           <p className="mt-3 font-bold p-2">
+           Already registered? <Link to="/register"  className="font-bold text-xl border-b-2 pb-1">Login</Link>
+         </p>
       </form>
      
     </div>
