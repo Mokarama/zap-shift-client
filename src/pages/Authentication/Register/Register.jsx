@@ -2,8 +2,10 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
+ import useAxios from './../../../hooks/useAxios';
 import { useState } from "react";
 import { Link } from "react-router";
+
 
 
 const Register = () => {
@@ -15,16 +17,29 @@ const Register = () => {
   const { createUser,updateUserProfile } = useAuth();
 
   //profile picture
-  const [profilePic, setProfilePic]=useState('')
+  const [profilePic, setProfilePic]=useState('');
+  const axiosInstance=useAxios();
 
   const onSubmit = (data) => {
     console.log(data);
     // console.log(createUser);
     createUser(data.email, data.password)
-      .then((result) => {
+      .then(async(result) => {
         console.log(result.user);
 
       //update userinfo in the database
+        const userInfo ={
+          email: data.email,
+          role: 'user',
+          created_at :new Date().toISOString(),
+          last_log_in :new Date().toISOString(),
+
+        }
+
+        const userRes =await axiosInstance.post('/users', userInfo);
+        console.log(userRes.data);
+        
+
 
       //update user profile in firebase
       const userProfile ={
@@ -61,7 +76,8 @@ const Register = () => {
 
    const imageUploadUrl =`https://api.imgbb.com/1/upload?key=${import.meta.env.VITE_image_upload_key}`;
   //  console.log(import.meta.env.VITE_image_upload_key,'image paisi');
- 
+
+
 
    try{
       const res =await axios.post(imageUploadUrl, formData);
@@ -74,8 +90,10 @@ const Register = () => {
    }
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)} className="card shadow-2xl">
+      <form onSubmit={handleSubmit(onSubmit)} 
+      className="card shadow-2xl">
         <div className="card-body">
+        
           <h2>Create an Account !</h2>
           <fieldset className="fieldset">
 
@@ -83,7 +101,7 @@ const Register = () => {
             <label className="label">Name</label>
             <input
               type="text"
-              {...register("text", {
+              {...register("name", {
                 required: true,
               })}
               className="input w-full"
