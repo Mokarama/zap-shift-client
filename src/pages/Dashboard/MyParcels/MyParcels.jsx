@@ -14,7 +14,11 @@ const MyParcels = () => {
     queryKey: ['my-parcels', user?.email],
     queryFn: async () => {
       if (!user?.email) return [];
-      const res = await axiosSecure.get(`/parcels?email=${user?.email}`);
+      const res = await axiosSecure.get(`/parcels?email=${user?.email}`,{
+        headers:{
+          Authorization:`Bearer ${user.accessToken}`
+        }
+      });
       return res.data;
     },
     enabled: !!user?.email
